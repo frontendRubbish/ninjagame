@@ -3,26 +3,87 @@
 </template>
 
 <script>
+const fps = 60
+const fpsInterval = 1000 / fps
 
-let gamepad;
+let store
+let gamepad
+let then
 
-function addConnectListener() {
-  window.addEventListener("gamepadconnected", connecthandler)
+function gameLoop () {
+  const now = Date.now()
+  let delta = now - then
+  let pressedButton
+  let pressedLeft
+  let pressedRight
+  let pressedUp
+  let pressedDown
+
+  if (delta > fpsInterval) {
+    then = now - (delta % fpsInterval)
+    store.commit('nextFrame')
+    gamepad = getGamepad()
+    if (gamepad) {
+      pressedButton = checkButton(gamepad, 0)
+      pressedLeft = checkButton(gamepad, 14)
+      pressedRight = checkButton(gamepad, 15)
+      pressedUp = checkButton(gamepad, 12)
+      pressedDown = checkButton(gamepad, 13)
+
+      if (pressedButton) {
+        console.log('Button A')
+      } else if (pressedLeft) {
+        console.log('left')
+      } else if (pressedRight) {
+        console.log('right')
+      } else if (pressedUp) {
+        console.log('up')
+      } else if (pressedDown) {
+        console.log('down')
+      }
+    }
+  }
+
+  requestAnimationFrame(gameLoop)
 }
 
-function connecthandler(e) {
+function checkButton (gamepad, buttonIdx) {
+  let val = gamepad.buttons[buttonIdx]
+  let buttonPressed = false
+
+  buttonPressed = val === 1.0
+  if (typeof (val) === 'object') {
+    buttonPressed = val.pressed
+    val = val.value
+  }
+
+  return buttonPressed
+}
+
+function getGamepad () {
+  const gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : [])
+  return gamepads[0]
+}
+
+function addConnectListener () {
+  window.addEventListener('gamepadconnected', connecthandler)
+}
+
+function connecthandler (e) {
   addgamepad(e.gamepad)
 }
 
-function addgamepad( newGamepad ) {
-  gamepad = newGamepad;
-  console.log( gamepad )
+function addgamepad (newGamepad) {
+  gamepad = newGamepad
 }
 
 export default {
   name: 'GameController',
   mounted: function () {
+    store = this.$store
     addConnectListener()
+    then = Date.now()
+    requestAnimationFrame(gameLoop)
   }
 }
 
