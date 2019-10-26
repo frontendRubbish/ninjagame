@@ -13,34 +13,25 @@ let then
 function gameLoop () {
   const now = Date.now()
   let delta = now - then
-  let pressedButton
-  let pressedLeft
-  let pressedRight
-  let pressedUp
-  let pressedDown
+  let controls = {
+    left: false,
+    right: false,
+    up: false,
+    down: false,
+    button: false
+  }
 
   if (delta > fpsInterval) {
     then = now - (delta % fpsInterval)
     store.commit('nextFrame')
     gamepad = getGamepad()
     if (gamepad) {
-      pressedButton = checkButton(gamepad, 0)
-      pressedLeft = checkButton(gamepad, 14)
-      pressedRight = checkButton(gamepad, 15)
-      pressedUp = checkButton(gamepad, 12)
-      pressedDown = checkButton(gamepad, 13)
-
-      if (pressedButton) {
-        console.log('Button A')
-      } else if (pressedLeft) {
-        console.log('left')
-      } else if (pressedRight) {
-        console.log('right')
-      } else if (pressedUp) {
-        console.log('up')
-      } else if (pressedDown) {
-        console.log('down')
-      }
+      controls.button = checkButton(gamepad, 0)
+      controls.left = checkButton(gamepad, 14)
+      controls.right = checkButton(gamepad, 15)
+      controls.up = checkButton(gamepad, 12)
+      controls.down = checkButton(gamepad, 13)
+      store.commit('updateControls', controls)
     }
   }
 

@@ -1,10 +1,11 @@
 <template>
-  <ul>
-    <li>Test</li>
-  </ul>
+  <div class="gameboard__frame">
+      <Hero />
+  </div>
 </template>
 
 <script>
+import Hero from '@/components/Hero.vue'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -16,17 +17,22 @@ export default {
   },
   watch: {
     tick: function (tick) {
-      if (tick) {
-        console.log('Tick')
-      } else {
-        console.log('Tock')
-      }
+      /* Do something here later */
     }
+  },
+  components: {
+    Hero
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
+  .gameboard {
+    &__frame {
+      border: 1px solid red;
+      height: 500px;
+      position: relative;
+    }
+  }
 </style>
