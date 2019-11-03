@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" buffered-rendering="static" width="30px" height="20px" viewBox="0,0,30,20" shape-rendering="crispEdges">
+<desc>
+This file was created by http://www.h2.dion.ne.jp/~defghi/img2svg3/dot2svg3.htm at Sun Nov 03 2019 13:34:05 GMT+0100 (Mitteleuropäische Normalzeit)
+path count:2
+</desc>
+<defs>
+<g id="dots">
+<path d="m0,0h13v1h2v-1h15v20h-13v-2h-2v-1h-2v2h2v1h-15zm16,1h-1v1h2v-1zm2,1h-1v1h2v-1zm2,1h-1v1h2v-1zm-10,1h-1v2h2v1h-2v2h2v1h-2v3h2v4h2v-2h2v1h4v2h2v-3h-2v-1h-2v-1h2v-1h-2v-3h2v-2h2v-1h2v-2h-2v1h-2v1h-2v1h-2v-2h-2v-1zm-2,9h-1v2h2v-2z" opacity="0"/>
+<path d="m13,0h2v1h2v1h2v1h2v1h2v2h-2v1h-2v2h-2v3h2v1h-2v1h2v1h2v3h-2v-2h-4v-1h-2v2h2v1h2v2h-2v-1h-2v-2h-2v-4h-2v2h-2v-2h2v-3h2v-1h-2v-2h2v-1h-2v-2h4v1h2v2h2v-1h2v-1h2v-1h-2v-1h-2v-1h-2v-1h-2z"/>
+</g>
+</defs>
+<use xlink:href="#dots"/>
+</svg>
